@@ -65,10 +65,9 @@ Here's a breakdown of the repository's key components:
 
 1.  **Download an embedding model:** Download a pre-trained embedding model, such as the GloVe model, from [https://nlp.stanford.edu/projects/glove/](https://nlp.stanford.edu/projects/glove/) or the specific version from [https://www.kaggle.com/datasets/watts2/glove6b50dtxt](https://www.kaggle.com/datasets/watts2/glove6b50dtxt).
 2.  **Set up your SurrealDB database:** Either install a version in your environment/laptop [https://surrealdb.com/docs/surrealdb/introduction/start](https://surrealdb.com/docs/surrealdb/introduction/start) or go the cloud route [https://surrealdb.com/cloud](https://surrealdb.com/cloud).
-4.  **Environment Variables:** Ensure your SurrealDB credentials are set as environment variables.
-3.  **Update `constants.py` (or use CLI inputs):** Modify the `constants.py` file to include the path to your downloaded model and SurrealDB connection details you can also use the CLI interface to set these.
-5.  **Run the script:** Execute the `step_0_process_input_embedding_model.py` script. This script will upload the embedding model into SurrealDB. Please note that this step could take several hours depending on the size of the embedding model and the performance of your database.
-      * CLI options:
+3.  **Environment Variables:** Ensure your SurrealDB credentials are set as environment variables.
+4.  **Update `constants.py` (or use CLI inputs):** Modify the `constants.py` file to include the path to your downloaded model and SurrealDB connection details you can also use the CLI interface to set these.
+    * CLI options:
          * -h, --help            show this help message and exit
          * -url URL, --url URL   Path to your SurrealDB instance (Default: ws://0.0.0.0:8000)
          * -ns NAMESPACE, --namespace NAMESPACE
@@ -81,5 +80,6 @@ Here's a breakdown of the repository's key components:
                            Your environment variable for db username (Default: SURREAL_CLOUD_TEST_USER)
          * -penv PASS_ENV, --pass_env PASS_ENV
                            Your environment variable for db password (Default: SURREAL_CLOUD_TEST_PASS)
-
+5.  **Run the script:** Execute the `step_0_process_input_embedding_model.py` script. This script will upload the embedding model into SurrealDB. Please note that this step could take several hours depending on the size of the embedding model and the performance of your database.
+     
 The repository is designed to make it easier to perform complex database operations efficiently. The use of SurrealDB's features with the provided functions can enhance your ability to build and scale real-time applications. The use of SurrealML enables storage and execution of ML models, and allows for integration with external training frameworks.
