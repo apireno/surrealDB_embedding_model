@@ -1,10 +1,7 @@
-from embeddings import EmbeddingModel
 from surrealdb import AsyncSurrealDB
 
 class SurqlEmbeddingModel:
   
-
-
   INSERT_EMBEDDING = """
   LET $this_object = type::thing("embedding_model",$word);
   CREATE $this_object  CONTENT {
