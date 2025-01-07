@@ -1,20 +1,16 @@
-
-from database import *
 import time
-from datetime import datetime,timedelta
-import ast
 import asyncio
 from surrealdb import AsyncSurrealDB
 import pandas as pd
 from surql_ddl import SurqlDDL
 from surql_embedding_model import SurqlEmbeddingModel
 from constants import Constants
-from helpers import Helpers
 import numpy as np
 from embeddings import EmbeddingModel
 
-
 out_folder = Constants.THIS_FOLDER + "/embeddings_{0}".format(time.strftime("%Y%m%d-%H%M%S"))
+constants = Constants()
+constants.LoadArgs("Input Embeddings Model")
 
 embeddding_insert_durations = []
 
@@ -58,11 +54,11 @@ async def process_embeddings(embeddings_df,batch_size=1,total_records=0,offset=0
     if total_records==0 :
         total_records = len(embeddings_df)
     start_time = time.time()
-    async with AsyncSurrealDB(Constants.DB_PARAMS.url) as db:
+    async with AsyncSurrealDB(constants.DB_PARAMS.url) as db:
 
-        auth_token = await db.sign_in(Constants.DB_PARAMS.username,Constants.DB_PARAMS.password)
-        outcome = await db.query(SurqlDDL.DDL_OVERWRITE_NS.format(ns=Constants.DB_PARAMS.namespace,db=Constants.DB_PARAMS.database))
-        await db.use(Constants.DB_PARAMS.namespace, Constants.DB_PARAMS.database)
+        auth_token = await db.sign_in(constants.DB_PARAMS.username,constants.DB_PARAMS.password)
+        outcome = await db.query(SurqlDDL.DDL_OVERWRITE_NS.format(ns=constants.DB_PARAMS.namespace,db=constants.DB_PARAMS.database))
+        await db.use(constants.DB_PARAMS.namespace, constants.DB_PARAMS.database)
         out = await db.query(SurqlDDL.DDL_EMBEDDING_MODEL)
 
         dataProcessor = SurqlEmbeddingModel(db)
@@ -108,25 +104,24 @@ async def main():
 
     print("""
           STEP 0
-          DB_PARAMS {URL} N-{NS} DB-{DB}
+          DB_PARAMS {URL} N: {NS} DB: {DB} USER: {DB_USER}
+
           DB_USER_ENV_VAR {DB_USER_ENV_VAR}
           DB_PASS_ENV_VAR {DB_PASS_ENV_VAR}
+
           MODEL_PATH {MODEL_PATH}
-          
-
-          
           """.format(
-              URL = Constants.DB_PARAMS.url,
-              NS = Constants.DB_PARAMS.namespace,
-              DB = Constants.DB_PARAMS.database,
-              DB_USER_ENV_VAR = Constants.DB_USER_ENV_VAR,
-              DB_PASS_ENV_VAR = Constants.DB_PASS_ENV_VAR,
-              MODEL_PATH = Constants.MODEL_PATH
+              URL = constants.DB_PARAMS.url,
+              DB_USER = constants.DB_PARAMS.username,
+              NS = constants.DB_PARAMS.namespace,
+              DB = constants.DB_PARAMS.database,
+              DB_USER_ENV_VAR = constants.DB_USER_ENV_VAR,
+              DB_PASS_ENV_VAR = constants.DB_PASS_ENV_VAR,
+              MODEL_PATH = constants.MODEL_PATH
           )
           )
-
     
-    embeddingModel = EmbeddingModel(Constants.MODEL_PATH)
+    embeddingModel = EmbeddingModel(constants.MODEL_PATH)
     embeddings_df = pd.DataFrame({'word': embeddingModel.dictionary.keys(), 'embedding': embeddingModel.dictionary.values()})
 
     print(embeddings_df.head())
