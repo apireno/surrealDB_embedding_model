@@ -13,6 +13,7 @@ from helpers import Helpers
 import numpy as np
 from embeddings import EmbeddingModel
 
+
 out_folder = Constants.THIS_FOLDER + "/embeddings_{0}".format(time.strftime("%Y%m%d-%H%M%S"))
 
 embeddding_insert_durations = []
@@ -40,7 +41,7 @@ async def process_embedding(dataProcessor:SurqlEmbeddingModel,row,counter,total_
     est_time_remaining_minutes = est_time_remaining / 60
     
 
-    print("{counter}/{total_count} {percent} est {est_time_remaining} elap {elapsed_duration} last {this_method_duration} avg {average_duration}  -{row}                                           ".format(
+    print("inserting... {counter}/{total_count}\t{percent}\test\t{est_time_remaining}\telap\t{elapsed_duration}\tlast\t{this_method_duration}\tavg\t{average_duration}\t-{row}                                           ".format(
                 counter = counter,
                 total_count = total_count,
                 percent = f"{percentage:.2%}",
@@ -90,7 +91,8 @@ async def process_embeddings(embeddings_df,batch_size=1,total_records=0,offset=0
 
 
     print(
-        """                                                                                                        
+        """ 
+        Step 0 -- Embedding Model Insertion                                                                                                        
         total elapsed {elapsed_duration}                                                                                                         
         {total_records} insert embbeding transaction (avg,min,max) ({average_duration},{min_embeddding_insert_duration},{max_embeddding_insert_duration})                                                     
         """.format(
@@ -104,6 +106,24 @@ async def process_embeddings(embeddings_df,batch_size=1,total_records=0,offset=0
 
 async def main():
 
+    print("""
+          STEP 0
+          DB_PARAMS {URL} N-{NS} DB-{DB}
+          DB_USER_ENV_VAR {DB_USER_ENV_VAR}
+          DB_PASS_ENV_VAR {DB_PASS_ENV_VAR}
+          MODEL_PATH {MODEL_PATH}
+          
+
+          
+          """.format(
+              URL = Constants.DB_PARAMS.url,
+              NS = Constants.DB_PARAMS.namespace,
+              DB = Constants.DB_PARAMS.database,
+              DB_USER_ENV_VAR = Constants.DB_USER_ENV_VAR,
+              DB_PASS_ENV_VAR = Constants.DB_PASS_ENV_VAR,
+              MODEL_PATH = Constants.MODEL_PATH
+          )
+          )
 
     
     embeddingModel = EmbeddingModel(Constants.MODEL_PATH)
