@@ -65,8 +65,8 @@ Here's a breakdown of the repository's key components:
 
 1.  **Download an embedding model:** Download a pre-trained embedding model, such as the GloVe model, from [https://nlp.stanford.edu/projects/glove/](https://nlp.stanford.edu/projects/glove/) or the specific version from [https://www.kaggle.com/datasets/watts2/glove6b50dtxt](https://www.kaggle.com/datasets/watts2/glove6b50dtxt).
 2.  **Set up your SurrealDB database:** Either install a version in your environment/laptop [https://surrealdb.com/docs/surrealdb/introduction/start](https://surrealdb.com/docs/surrealdb/introduction/start) or go the cloud route [https://surrealdb.com/cloud](https://surrealdb.com/cloud).
-3.  **Update `constants.py`:** Modify the `constants.py` file to include the path to your downloaded model and your SurrealDB connection details.
-4.  **Environment Variables:** Ensure your SurrealDB credentials are set in the environment variables mentioned in the `database.py` file.
+4.  **Environment Variables:** Ensure your SurrealDB credentials are set as environment variables.
+3.  **Update `constants.py`:** Modify the `constants.py` file to include the path to your downloaded model and SurrealDB connection details.
 5.  **Run the script:** Execute the `step_0_process_input_embedding_model.py` script. This script will upload the embedding model into SurrealDB. Please note that this step could take several hours depending on the size of the embedding model and the performance of your database.
 
 The repository is designed to make it easier to perform complex database operations efficiently. The use of SurrealDB's features with the provided functions can enhance your ability to build and scale real-time applications. The use of SurrealML enables storage and execution of ML models, and allows for integration with external training frameworks.
