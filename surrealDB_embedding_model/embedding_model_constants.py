@@ -78,7 +78,7 @@ class ArgsLoader():
         self.db_constants.AddArgs(self.parser)
 
     def LoadArgs(self):
-        args = self.parser.parse_args()
-        self.embed_constants.SetArgs(args)
-        self.db_constants.SetArgs(args)
+        self.args = self.parser.parse_args()
+        self.embed_constants.SetArgs(self.args)
+        self.db_constants.SetArgs(self.args)
         
