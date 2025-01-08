@@ -12,8 +12,8 @@ from embeddings import EmbeddingModel
 out_folder = THIS_FOLDER + "/embeddings_{0}".format(time.strftime("%Y%m%d-%H%M%S"))
 db_constants = DatabaseConstants()
 embed_constants = EmbeddingModelConstants()
-args_loader = ArgsLoader("Input Embeddings Model")
-args_loader.LoadArgs(db_constants,embed_constants)
+args_loader = ArgsLoader("Input Embeddings Model",db_constants,embed_constants)
+args_loader.LoadArgs()
 
 embeddding_insert_durations = []
 

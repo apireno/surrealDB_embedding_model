@@ -68,18 +68,17 @@ class EmbeddingModelConstants():
 
 class ArgsLoader():
 
-    def __init__(self,description):
-        self.parser = argparse.ArgumentParser(description=description)
-
-    def LoadArgs(self,
+    def __init__(self,description,
             db_constants: DatabaseConstants,
-            embed_constants: EmbeddingModelConstants
-            ):
-        embed_constants.AddArgs(self.parser)
-        db_constants.AddArgs(self.parser)
+            embed_constants: EmbeddingModelConstants):
+        self.parser = argparse.ArgumentParser(description=description)
+        self.db_constants = db_constants
+        self.embed_constants = embed_constants
+        self.embed_constants.AddArgs(self.parser)
+        self.db_constants.AddArgs(self.parser)
 
+    def LoadArgs(self):
         args = self.parser.parse_args()
-
-        embed_constants.SetArgs(args)
-        db_constants.SetArgs(args)
+        self.embed_constants.SetArgs(args)
+        self.db_constants.SetArgs(args)
         
