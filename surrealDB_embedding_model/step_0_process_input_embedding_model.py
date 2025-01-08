@@ -8,6 +8,7 @@ from embedding_model_constants import EmbeddingModelConstants,DatabaseConstants,
 import numpy as np
 from embeddings import EmbeddingModel
 
+
 out_folder = THIS_FOLDER + "/embeddings_{0}".format(time.strftime("%Y%m%d-%H%M%S"))
 db_constants = DatabaseConstants()
 embed_constants = EmbeddingModelConstants()
