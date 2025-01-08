@@ -1,6 +1,3 @@
-import sys
-print(sys.path)
-
 import time
 import asyncio
 from surrealdb import AsyncSurrealDB
