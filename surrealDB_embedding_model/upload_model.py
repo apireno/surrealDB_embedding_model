@@ -2,11 +2,11 @@ import time
 import asyncio
 from surrealdb import AsyncSurrealDB
 import pandas as pd
-from embedding_model_ddl import EmbeddingModelDDL
-from surql_embedding_model import SurqlEmbeddingModel
-from embedding_model_constants import EmbeddingModelConstants,DatabaseConstants,THIS_FOLDER,ArgsLoader
+from surrealDB_embedding_model.embedding_model_ddl import EmbeddingModelDDL
+from surrealDB_embedding_model.surql_embedding_model import SurqlEmbeddingModel
+from surrealDB_embedding_model.embedding_model_constants import EmbeddingModelConstants,DatabaseConstants,THIS_FOLDER,ArgsLoader
 import numpy as np
-from embeddings import EmbeddingModel
+from surrealDB_embedding_model.embeddings import EmbeddingModel
 
 
 out_folder = THIS_FOLDER + "/embeddings_{0}".format(time.strftime("%Y%m%d-%H%M%S"))

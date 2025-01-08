@@ -1,6 +1,6 @@
 import argparse
 import os
-from database import Database
+from surrealDB_embedding_model.database import Database
 
 THIS_FOLDER = "./"
 
