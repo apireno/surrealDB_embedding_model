@@ -80,6 +80,6 @@ Here's a breakdown of the repository's key components:
                            Your environment variable for db username (Default: SURREAL_CLOUD_TEST_USER)
          * -penv PASS_ENV, --pass_env PASS_ENV
                            Your environment variable for db password (Default: SURREAL_CLOUD_TEST_PASS)
-5.  **Run the script:** Execute the `step_0_process_input_embedding_model.py` script. This script will upload the embedding model into SurrealDB. Please note that this step could take several hours depending on the size of the embedding model and the performance of your database.
+5.  **Run the script:** Execute the `upload_model.py` script. This script will upload the embedding model into SurrealDB. Please note that this step could take several hours depending on the size of the embedding model and the performance of your database.
      
 The repository is designed to make it easier to perform complex database operations efficiently. The use of SurrealDB's features with the provided functions can enhance your ability to build and scale real-time applications. The use of SurrealML enables storage and execution of ML models, and allows for integration with external training frameworks.
