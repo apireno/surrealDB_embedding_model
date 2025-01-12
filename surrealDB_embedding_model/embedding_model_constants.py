@@ -77,8 +77,19 @@ class ArgsLoader():
         self.embed_constants.AddArgs(self.parser)
         self.db_constants.AddArgs(self.parser)
 
+        
+
     def LoadArgs(self):
         self.args = self.parser.parse_args()
         self.embed_constants.SetArgs(self.args)
         self.db_constants.SetArgs(self.args)
+        
+
+
+        #for developing edit the settings here to avoid using CLI
+        # self.db_constants.DB_PARAMS.url = "ws://0.0.0.0:8080"
+        # self.db_constants.DB_PARAMS.database = "custom_recipe_embedding"
+        # self.embed_constants.MODEL_PATH = "data/recipe_model.txt"
+
+       
         

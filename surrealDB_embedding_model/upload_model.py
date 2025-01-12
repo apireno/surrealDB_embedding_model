@@ -127,7 +127,14 @@ async def main():
     embeddingModel = EmbeddingModel(embed_constants.MODEL_PATH)
     embeddings_df = pd.DataFrame({'word': embeddingModel.dictionary.keys(), 'embedding': embeddingModel.dictionary.values()})
 
-    print(embeddings_df.head())
+    
+    print("Embeddings Model Description Len")
+    print(len(embeddings_df))
+    print("Embeddings Model Description Head")
+    embeddings_df["len"] = embeddings_df["embedding"].apply(len)  
+    print(embeddings_df.sort_values(by=['len']).head()) 
+
+    
 
     await process_embeddings(embeddings_df)
 

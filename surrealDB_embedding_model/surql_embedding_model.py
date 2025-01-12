@@ -20,5 +20,9 @@ class SurqlEmbeddingModel:
           if item["status"]=="ERR":
               raise SystemError("Step action error: {0}".format(item["result"])) 
       return outcome
+  
+  async def get_model_dimensions(self):
+      outcome = await self.db.query("SELECT VALUE array::len(embedding) FROM embedding_model LIMIT 1")
+      return int(outcome[0]["result"][0])
 
 
