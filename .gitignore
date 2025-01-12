@@ -1,0 +1,5 @@
+data/glove.6B.50d.txt
+.DS_Store
+data/recipe_model.txt
+surrealDB_embedding_model/__pycache__
+surrealdb_embedding_model.egg-info
