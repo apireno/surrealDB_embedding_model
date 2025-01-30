@@ -59,7 +59,7 @@ async def process_embeddings(embeddings_df,batch_size=1,total_records=0,offset=0
     start_time = time.time()
     async with AsyncSurreal(db_constants.DB_PARAMS.url) as db:
 
-        auth_token = await db.sign_in(db_constants.DB_PARAMS.username,db_constants.DB_PARAMS.password)
+        auth_token = await db.signin({"username":db_constants.DB_PARAMS.username,"password":db_constants.DB_PARAMS.password})
         outcome = await db.query(EmbeddingModelDDL.DDL_OVERWRITE_NS.format(ns=db_constants.DB_PARAMS.namespace,db=db_constants.DB_PARAMS.database))
         await db.use(db_constants.DB_PARAMS.namespace, db_constants.DB_PARAMS.database)
         out = await db.query(EmbeddingModelDDL.DDL_EMBEDDING_MODEL)
