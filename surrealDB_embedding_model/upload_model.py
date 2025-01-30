@@ -1,6 +1,6 @@
 import time
 import asyncio
-from surrealdb import AsyncSurrealDB
+from surrealdb import AsyncSurreal
 import pandas as pd
 from surrealDB_embedding_model.embedding_model_ddl import EmbeddingModelDDL
 from surrealDB_embedding_model.surql_embedding_model import SurqlEmbeddingModel
@@ -57,7 +57,7 @@ async def process_embeddings(embeddings_df,batch_size=1,total_records=0,offset=0
     if total_records==0 :
         total_records = len(embeddings_df)
     start_time = time.time()
-    async with AsyncSurrealDB(db_constants.DB_PARAMS.url) as db:
+    async with AsyncSurreal(db_constants.DB_PARAMS.url) as db:
 
         auth_token = await db.sign_in(db_constants.DB_PARAMS.username,db_constants.DB_PARAMS.password)
         outcome = await db.query(EmbeddingModelDDL.DDL_OVERWRITE_NS.format(ns=db_constants.DB_PARAMS.namespace,db=db_constants.DB_PARAMS.database))

@@ -86,10 +86,6 @@ class ArgsLoader():
         
 
 
-        #for developing edit the settings here to avoid using CLI
-        # self.db_constants.DB_PARAMS.url = "ws://0.0.0.0:8080"
-        # self.db_constants.DB_PARAMS.database = "custom_recipe_embedding"
-        # self.embed_constants.MODEL_PATH = "data/recipe_model.txt"
 
        
         

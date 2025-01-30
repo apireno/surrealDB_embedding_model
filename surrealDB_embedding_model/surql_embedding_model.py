@@ -1,4 +1,4 @@
-from surrealdb import AsyncSurrealDB
+from surrealdb import AsyncSurreal
 
 class SurqlEmbeddingModel:
   
@@ -10,7 +10,7 @@ class SurqlEmbeddingModel:
       } RETURN NONE;
   """
 
-  def __init__(self,db: AsyncSurrealDB):
+  def __init__(self,db: AsyncSurreal):
       self.db = db
 
   async def insert_embedding(self,word,embedding):
