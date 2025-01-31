@@ -3,9 +3,8 @@ class EmbeddingModelDDL:
 
     DDL_CREATE_NS = """
         DEFINE NAMESPACE IF NOT EXISTS {ns};
-        DEFINE DATABASE IF NOT EXISTS {db};
-
         USE NAMESPACE {ns};
+        DEFINE DATABASE IF NOT EXISTS {db};
         USE DATABASE {db};
     """
     DDL_OVERWRITE_NS = """

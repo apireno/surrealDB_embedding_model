@@ -15,14 +15,15 @@ class SurqlEmbeddingModel:
 
   async def insert_embedding(self,word,embedding):
       params = {"word": word,"embedding": embedding}
-      outcome = await self.db.query(SurqlEmbeddingModel.INSERT_EMBEDDING, params)
+      outcome = await self.db.query_raw(SurqlEmbeddingModel.INSERT_EMBEDDING, params)
       for item in outcome:
+          print(f"-----------------------------item: {item}")
           if item["status"]=="ERR":
               raise SystemError("Step action error: {0}".format(item["result"])) 
       return outcome
   
   async def get_model_dimensions(self):
-      outcome = await self.db.query("SELECT VALUE array::len(embedding) FROM embedding_model LIMIT 1")
+      outcome = await self.db.query_raw("SELECT VALUE array::len(embedding) FROM embedding_model LIMIT 1")
       return int(outcome[0]["result"][0])
 
 

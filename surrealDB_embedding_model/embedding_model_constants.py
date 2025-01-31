@@ -49,8 +49,12 @@ class DatabaseConstants():
             self.DB_PASS_ENV_VAR = args.pass_env
             self.DB_PARAMS.password = os.getenv(self.DB_PASS_ENV_VAR)
 
+        
     
 
+
+
+    
 
 class EmbeddingModelConstants():
     def __init__(self):
@@ -76,13 +80,15 @@ class ArgsLoader():
         self.embed_constants = embed_constants
         self.embed_constants.AddArgs(self.parser)
         self.db_constants.AddArgs(self.parser)
-
         
 
     def LoadArgs(self):
         self.args = self.parser.parse_args()
         self.embed_constants.SetArgs(self.args)
         self.db_constants.SetArgs(self.args)
+
+        
+
         
 
 
