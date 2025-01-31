@@ -7,7 +7,7 @@ from surrealDB_embedding_model.surql_embedding_model import SurqlEmbeddingModel
 from surrealDB_embedding_model.embedding_model_constants import EmbeddingModelConstants,DatabaseConstants,THIS_FOLDER,ArgsLoader
 import numpy as np
 from surrealDB_embedding_model.embeddings import EmbeddingModel
-from database import Database
+from surrealDB_embedding_model.database import Database
 
 
 out_folder = THIS_FOLDER + "/embeddings_{0}".format(time.strftime("%Y%m%d-%H%M%S"))

@@ -1,5 +1,5 @@
 from surrealdb import AsyncSurreal
-from database import Database
+from surrealDB_embedding_model.database import Database
 
 class SurqlEmbeddingModel:
   
