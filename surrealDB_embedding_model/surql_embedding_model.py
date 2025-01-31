@@ -20,7 +20,7 @@ class SurqlEmbeddingModel:
       return outcome
   
   async def get_model_dimensions(self):
-      outcome = await self.db.query_raw("SELECT VALUE array::len(embedding) FROM embedding_model LIMIT 1")
+      outcome = Database.ParseResponseForErrors(await self.db.query_raw("SELECT VALUE array::len(embedding) FROM embedding_model LIMIT 1"))
       return int(outcome[0]["result"][0])
 
 
