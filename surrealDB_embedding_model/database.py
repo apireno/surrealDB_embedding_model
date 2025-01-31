@@ -6,3 +6,11 @@ class Database():
         self.namespace = namespace
         self.database = database
         self.url = url
+
+    @staticmethod
+    def ParseResponseForErrors(outcome):
+      if "result" in outcome:
+        for item in outcome["result"]:
+            if item["status"]=="ERR":
+                raise SystemError("Step action error: {0}".format(item["result"])) 
+      return outcome

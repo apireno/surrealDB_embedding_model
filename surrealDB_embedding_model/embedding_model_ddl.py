@@ -9,10 +9,8 @@ class EmbeddingModelDDL:
     """
     DDL_OVERWRITE_NS = """
         DEFINE NAMESPACE OVERWRITE {ns};
-        DEFINE DATABASE OVERWRITE {db};
-
-
         USE NAMESPACE {ns};
+        DEFINE DATABASE OVERWRITE {db};
         USE DATABASE {db};
     """
 

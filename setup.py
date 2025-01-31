@@ -8,11 +8,5 @@ setup(
     install_requires=[
         "surrealdb",
         "torch",
-    ],
-    entry_points={
-        'console_scripts': [
-            'step_0_process_input_embedding_model = surrealdb_embedding_model.scripts.step_0_process_input_embedding_model:main', 
-            # Assuming you have a 'main' function in your script
-        ],
-    }
+    ]
 )

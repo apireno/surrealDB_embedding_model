@@ -7,6 +7,7 @@ from surrealDB_embedding_model.surql_embedding_model import SurqlEmbeddingModel
 from surrealDB_embedding_model.embedding_model_constants import EmbeddingModelConstants,DatabaseConstants,THIS_FOLDER,ArgsLoader
 import numpy as np
 from surrealDB_embedding_model.embeddings import EmbeddingModel
+from database import Database
 
 
 out_folder = THIS_FOLDER + "/embeddings_{0}".format(time.strftime("%Y%m%d-%H%M%S"))
@@ -21,7 +22,7 @@ async def process_embedding(dataProcessor:SurqlEmbeddingModel,row,counter,total_
     percentage = counter/total_count
     method_start_time = time.time() 
 
-    out = await dataProcessor.insert_embedding(row.word,row.embedding.tolist())
+    outcome = Database.ParseResponseForErrors(await dataProcessor.insert_embedding(row.word,row.embedding.tolist()))
     current_time = time.time()
     
     elapsed_duration = current_time - start_time
@@ -62,9 +63,9 @@ async def process_embeddings(embeddings_df,batch_size=1,total_records=0,offset=0
         auth_token = await db.signin({"username":db_constants.DB_PARAMS.username,"password":db_constants.DB_PARAMS.password})
 
         
-        outcome = await db.query_raw(EmbeddingModelDDL.DDL_OVERWRITE_NS.format(ns=db_constants.DB_PARAMS.namespace,db=db_constants.DB_PARAMS.database))
+        outcome = Database.ParseResponseForErrors(await db.query_raw(EmbeddingModelDDL.DDL_OVERWRITE_NS.format(ns=db_constants.DB_PARAMS.namespace,db=db_constants.DB_PARAMS.database)))
         await db.use(db_constants.DB_PARAMS.namespace, db_constants.DB_PARAMS.database)
-        out = await db.query_raw(EmbeddingModelDDL.DDL_EMBEDDING_MODEL)
+        outcome = Database.ParseResponseForErrors(await db.query_raw(EmbeddingModelDDL.DDL_EMBEDDING_MODEL))
 
         dataProcessor = SurqlEmbeddingModel(db)
 

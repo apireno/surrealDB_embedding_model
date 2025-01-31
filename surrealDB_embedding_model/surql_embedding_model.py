@@ -1,4 +1,5 @@
 from surrealdb import AsyncSurreal
+from database import Database
 
 class SurqlEmbeddingModel:
   
@@ -15,11 +16,7 @@ class SurqlEmbeddingModel:
 
   async def insert_embedding(self,word,embedding):
       params = {"word": word,"embedding": embedding}
-      outcome = await self.db.query_raw(SurqlEmbeddingModel.INSERT_EMBEDDING, params)
-      for item in outcome:
-          print(f"-----------------------------item: {item}")
-          if item["status"]=="ERR":
-              raise SystemError("Step action error: {0}".format(item["result"])) 
+      outcome = Database.ParseResponseForErrors(await self.db.query_raw(SurqlEmbeddingModel.INSERT_EMBEDDING, params))
       return outcome
   
   async def get_model_dimensions(self):
