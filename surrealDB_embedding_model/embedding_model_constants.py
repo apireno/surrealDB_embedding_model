@@ -88,7 +88,6 @@ class ArgsLoader():
         self.embed_constants.SetArgs(self.args)
         self.db_constants.SetArgs(self.args)
 
-        self.db_constants.DB_PARAMS.database = "test123"
 
         
 
