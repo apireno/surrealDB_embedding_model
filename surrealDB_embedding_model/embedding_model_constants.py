@@ -10,18 +10,18 @@ class DatabaseConstants():
     def __init__(self):
         #export SURREAL_CLOUD_TEST_USER=xxx
         #export SURREAL_CLOUD_TEST_PASS=xxx
-        self.DB_USER_ENV_VAR = "SURREAL_CLOUD_TEST_USER"
-        self.DB_PASS_ENV_VAR = "SURREAL_CLOUD_TEST_PASS"
+        self.DB_USER_ENV_VAR = "SURREAL_DEMO_USER"
+        self.DB_PASS_ENV_VAR = "SURREAL_DEMO_PASS"
     
         
         #The path to your SurrealDB instance
         #The the SurrealDB namespace and database to upload the model to
         self.DB_PARAMS = Database(
-            "ws://0.0.0.0:8000",
+            "ws://0.0.0.0:8080",
             os.getenv(self.DB_USER_ENV_VAR),
             os.getenv(self.DB_PASS_ENV_VAR),
-            "embedding_example",
-            "embedding_example")
+            "rag_examples",
+            "simple_graph_rag")
                     
         #For use in authenticating your database in database.py
         #These are just the pointers to the environment variables

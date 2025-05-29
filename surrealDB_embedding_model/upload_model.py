@@ -1,7 +1,7 @@
 import time
 import asyncio
-from surrealdb import AsyncSurreal
 import pandas as pd
+from surrealdb import AsyncSurreal
 from surrealDB_embedding_model.embedding_model_ddl import EmbeddingModelDDL
 from surrealDB_embedding_model.surql_embedding_model import SurqlEmbeddingModel
 from surrealDB_embedding_model.embedding_model_constants import EmbeddingModelConstants,DatabaseConstants,THIS_FOLDER,ArgsLoader
